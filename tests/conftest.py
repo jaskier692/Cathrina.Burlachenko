@@ -1,4 +1,4 @@
-import sys
+iimport sys
 from pathlib import Path
 from io import StringIO
 
@@ -23,9 +23,5 @@ class Capturing(list):
 
     def __exit__(self, *args):
         self.extend(self._stringio.getvalue().splitlines())
-        del self._stringio
+        del self._stringio  # free up some memory
         sys.stdout = self._stdout
-
-
-def pytest_make_parametrize_id(config, val):
-    return repr(val)
